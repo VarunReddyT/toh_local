@@ -1,0 +1,13 @@
+.parentgd{
+    display: grid;
+    grid-template-rows: repeat(10,1fr);
+    grid-template-columns: repeat(12,1fr);
+    
+}
+.GuestDetails{
+    grid-column: 2/12;
+    grid-row: 4/10;
+    min-height: auto;
+    max-width: 600px;
+    
+}

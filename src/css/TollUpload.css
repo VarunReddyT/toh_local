@@ -1,0 +1,14 @@
+.parenttu{
+    
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(10,1fr);
+}
+.TollUpload{
+    max-width: 700px;
+    grid-column: 2/12;
+    grid-row: 3/10;
+    
+    /* left: 10vw; */
+    /* top: 3vw; */
+}
