@@ -20,6 +20,7 @@ import './css/GuestUpload.css';
 import './webfontkit-20231017-084401/stylesheet.css';
 import { useEffect,useState } from 'react';
 import CheckRecords from './Components/CheckRecords';
+import Statistics from './Components/Statistics';
 
 const NotFound = () => <h1>404 Error.
   The page you are looking for does not exist
@@ -54,6 +55,7 @@ function App() {
           <Route path='/guest/upload' element={<GuestUpload />} />
           <Route path='/guest/checkdetails' element={<GuestDetails />} />
           <Route path='/toll/checkrecords' element={<CheckRecords selectedToll={selectedToll} />} />
+          <Route path='/stats' element={<Statistics/>}/>
           <Route path='*' element={<NotFound />}/>
         </Routes>
       </Router>
