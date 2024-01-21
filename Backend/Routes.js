@@ -300,6 +300,29 @@ app.get('/checkRecords',async(req,res)=>{
 
 });
 
+app.get('/stats',async(req,res)=>{
+  try{
+    
+    const cracked = await TollData.countDocuments({'tyreStatus': {
+      $elemMatch: {
+        class: 'Cracked',
+      },
+    }});
+    const normal = await TollData.countDocuments({'tyreStatus': {
+      $elemMatch: {
+        class: 'Normal',
+      },
+    }});
+    let list1 = [];
+    list1.push(cracked);
+    list1.push(normal);
+    res.send(list1);
+  }
+  catch(err){
+    console.log(err);
+  }
+});
+
 // ^ Server listening on port 4000
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
 
