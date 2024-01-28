@@ -6,13 +6,13 @@ export default function Guest(props) {
     // const navigate = useNavigate();
     return (
         <div className="container d-flex justify-content-center align-items-center mt-5">
-            <div className="shadow-lg rounded-3 m-0 border border-black">
+            <div className="shadow-lg rounded-3 m-0 border border-white">
                 <div className="row">
                     <div className="mt-4 text-center">
-                        <Link type="button" className="btn btn-dark" to="/guest/upload">Upload Your Tire Image Here</Link>
+                        <Link type="button" className="btn btn-light" to="/guest/upload">Upload Your Tire Image Here</Link>
                     </div>
                     <div className="mt-4 text-center">
-                        <Link type="button" className="btn btn-dark" to="/guest/checkdetails">Check Your Vehicle Details</Link>
+                        <Link type="button" className="btn btn-light" to="/guest/checkdetails">Check Your Vehicle Details</Link>
                     </div>
                     <div className="mt-4 mb-2 text-center">
                         <Link type="button" className="btn btn-secondary" to="/">Go Back</Link>

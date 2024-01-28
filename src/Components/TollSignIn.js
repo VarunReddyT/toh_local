@@ -81,13 +81,13 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
   };
 
   return (
-    <div className='container ms-6 mt-5 d-flex justify-content-center'>
-      <form className="col-12 col-md-5 shadow-lg rounded-4 p-4" style={{ backdropFilter:'blur(4px)'}} >
-        <div className='row '>
+    <div className='container d-flex justify-content-center align-items-center'>
+      <form className="col shadow-lg rounded-4 p-4" style={{ backdropFilter:'blur(4px)'}} >
+        <div className='row'>
           <h1 className='col' style={{color:'white'}}>Sign In to Toll Plaza</h1>
         </div>
-        <div className='row'>
-          <div className="col-md-6">
+        <div className='row '>
+          <div className="col-sm-5">
             <select  className="form-select border border-black mt-3 w-100" id="Select" aria-label="label select example" autoComplete="off" onChange={handleTollChange} required>
               <option selected >Select Toll Plaza</option>
               <option value="Hyderabad">Hyderabad</option>
@@ -103,17 +103,17 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
             </select>
           </div>
         </div>
-        <div className="row mt-3 align-items-center">
-          <div className="col-md-6"> {/* Adjust the column size based on your layout */}
+        <div className="row mt-3">
+          <div className="col-sm-5">
             <input style={{ borderColor: 'black',color:'black' }} type="password" className="form-control" id="pwd" required value={pwd} placeholder="Password" onChange={handlePwdChange} />
           </div>
-          <div className="col-md-6"> {/* Adjust the column size based on your layout */}
-            <label className="form-check-label d-flex mt-2 mt-md-0 ">
+          <div className="col">
+            <label className="form-check-label mt-2 mt-md-0 ">
               <input type="checkbox" id="showPassword" className="form-check-input border border-black" onClick={togglePasswordVisibility} />  <span className="ms-2"style={{color:'white'}}>Show Password</span>
             </label>
           </div>
         </div>
-        <div className="row mt-3 align-items-center">
+        <div className="row mt-3">
           <div className="col-md-6">
             {loader && <Loader />}
           </div>
@@ -122,14 +122,14 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
           <p style={{ color: displayMessage.includes("Invalid") ? "red" : "blue" }}>{displayMessage}</p>
         </div>}
         <div className="input-group mt-3 row">
-          <div className="left col-sm-3">
+          <div className="col">
             <Link to="/"
               type="button" className="btn btn-warning mt-1 ">
               Go Back
             </Link>
           </div>
-          <div className="right col-sm-3">
-            <input type="submit" value="Sign In" className='btn  btn-success mt-1' onClick={handleSubmit} />
+          <div className="col">
+            <input type="submit" value="Sign In" className='btn btn-success mt-1' onClick={handleSubmit} />
           </div>
         </div>
       </form>

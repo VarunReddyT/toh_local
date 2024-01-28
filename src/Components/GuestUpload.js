@@ -85,17 +85,17 @@ export default function GuestUpload(props) {
     return (
 
         <div className="container d-flex justify-content-cenetr  mt-5">
-            <div className="GuestUpload container  rounded-4 p-3" style={{ backdropFilter: 'blur(15px)',maxWidth:'450px',maxHeight:'200px' }}>
+            <div className="GuestUpload container rounded-4 p-3" style={{ backdropFilter: 'blur(15px)',maxWidth:'450px',maxHeight:'200px' }}>
                 <form onSubmit={handleUpload} id='form' >
                     <div className="row text-center mb-3">
                         <h1 style={{ color: 'white' }}>Upload Tire</h1>
                     </div>
                     <div className="image row">
-                        <div className="col">
+                        <div className="col mt-3">
                             <input style={{ borderColor: 'black' }} onChange={handleFileChange} type="file" multiple accept="image/*" name="tyre" className="image form-control " required />
                         </div>
-                        <div className="row">
-                            <div className="col mt-2 ">
+                        <div className="row mt-4">
+                            <div className="col-4 mt-2 ms-5">
                                 <Link to="/guest"
                                     className="btn btn-warning" >Go Back
                                 </Link>
@@ -103,7 +103,7 @@ export default function GuestUpload(props) {
                             <div className="col mt-2">
                                 {res && <button className="btn btn-success mb-2 ms-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Result</button>}
                             </div>
-                            <div className="col-sm-2">
+                            <div className="col">
                                 <button type='submit' className="btn btn-primary mt-2 mb-2">Submit</button>
                             </div>
                         </div>

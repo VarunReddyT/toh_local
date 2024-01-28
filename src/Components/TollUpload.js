@@ -149,21 +149,21 @@ export default function TollUpload(props) {
   }
 
   return (
-    <div className="parenttu">
-      <div className='TollUpload container m-0'>
+    <div className="container d-flex justify-content-center align-items-center">
+      <div className='m-0'>
         <form onSubmit={handleSubmit} style={{maxWidth:'500px',width:'100%'}} className='shadow-lg rounded-4 border border-black p-4' encType='multipart/form-data' id='TollUploadForm'>
           <div id="TollUploadText">
             <h1>Upload the data</h1>
           </div>
-          <div className="col-sm-7">
+          <div className="col">
             <label htmlFor="TollVehicleNumber" id="TollVehNo" className="form-label">VehicleNumber</label>
-            <input type="text" className="form-control " onChange={handleVNOChange} id="TollVehicleNumber" required style={{ textTransform: 'uppercase' }} />
+            <input type="text" className="form-control "  onChange={handleVNOChange} id="TollVehicleNumber" required style={{ textTransform: 'uppercase' }} />
           </div>
-          <div className="col-sm-7 mt-2">
+          <div className="col mt-2">
             <label htmlFor="TollUserMobileNo" id="TollUserNo" className="form-label">User Mobile Number</label>
-            <input type="number" className="form-control " onChange={handleMNOChange} id="TollUserMobileNo" required />
+            <input type="number" className="form-control " placeholder='XXXXXXXXXX' onChange={handleMNOChange} id="TollUserMobileNo" required />
           </div>
-          <div className="image col-sm-7 mt-2">
+          <div className="image col mt-2">
             <label htmlFor="TollTireImage" id="TollUploadTire" className="form-label">Upload Tire(s) :</label>
             <input type="file" accept='image/*' name="tyre" onChange={handleImageChange} required id="TollTireImage" maxLength={8} className='form-control' multiple />
           </div>
@@ -175,13 +175,14 @@ export default function TollUpload(props) {
               <p style={{ color: uploadStatus.includes("Not") ? "red" : "green" }}>{uploadStatus}</p>
             </div>
           )}
-          <div className="col-12 mt-2 mb-2">
+          <div className='d-flex mt-4'>
+          <div className="col">
+            <Link type='button' id='TollBack' className="btn btn-warning" to="/toll/start">Go Back</Link>
+          </div>
+          <div className="col">
             <button type="submit" id="TollSubmit" className="btn btn-success">Submit</button>
           </div>
-          <div className="col-12 mt-2">
-            <Link to="/toll/start"><button type='' id='TollBack' className="btn btn-warning">Go Back</button></Link>
           </div>
-
 
         </form>
 

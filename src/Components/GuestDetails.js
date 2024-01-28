@@ -57,8 +57,8 @@ export default function GuestDetails(props) {
     }
 
     return (
-        <div className="parentgd container d-flex justify-content-center mt-5">
-            <div className='GuestDetails container  rounded-4 p-4' style={{
+        <div className="container d-flex justify-content-center mt-5">
+            <div className='container' style={{
                 backdropFilter: 'blur(13px)', minHeight: 'auto',
                 maxWidth: '600px',
             }}>
@@ -67,17 +67,17 @@ export default function GuestDetails(props) {
                         <div className='col'>
                             <h1 style={{ color: 'white' }}>Check Your Vehicle Details</h1>
                         </div>
-                        <div className="col">
-                            <input type="text" onChange={handleVnoChange} className="form-control border border-black" placeholder='VehicleNumber' name="VehicleNumber" id="vehicleU" required />
+                        <div className="col mt-4">
+                            <input type="text" onChange={handleVnoChange} className="form-control border border-black" placeholder='Vehicle Number' name="VehicleNumber" id="vehicleU" required />
                         </div>
-                        <div className="row">
-                            <div className="col-sm-3 mt-2">
+                        <div className="row mt-4">
+                            <div className="col mt-2 ms-5">
                                 <Link to="/guest" className="btn btn-warning back" id="blackbut">Go Back</Link>
                             </div>
-                            {res && <div className="col-sm-3 mt-2">
+                            {res && <div className="col mt-2">
                                 <button type="button" className="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Result</button>
                             </div>}
-                            <div className="col-sm-3 mt-2">
+                            <div className="col mt-2">
                                 <button type="submit" className="btn btn-primary detSub">Submit</button>
                             </div>
                         </div>

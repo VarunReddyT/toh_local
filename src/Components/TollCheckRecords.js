@@ -93,11 +93,10 @@ export default function CheckRecords(props) {
 
   return (
     <div>
-      <h1>Check Records</h1>
+      <h1 className='mt-3 text-center'>Check Records</h1>
       <div className='container text-center'>
-        <div></div>
         <form onSubmit={checkDate}>
-          <label htmlFor='date'>Enter date</label>
+          <label htmlFor='date'>Enter date : &nbsp;</label>
           <input type='date' name='date' className='me-3' onChange={handleDateChange} max={dateS} required></input>
           {!loader && <input type='submit' className='btn btn-primary me-1' value='Check' />}
           <input type='button' className='btn btn-warning ms-1' onClick={goTo} value='Go Back' />
