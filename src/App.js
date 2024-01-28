@@ -14,9 +14,10 @@ import Statistics from './Components/Statistics';
 import Loader from './Components/Loader';
 import CheckRecords from './Components/TollCheckRecords';
 import NoAccess from './Components/NoAccess';
-// import Footer from './Components/Footer';
+import Footer from './Components/Footer';
 import './all_css/Home.css';
 import './all_css/Loader.css';
+import './all_css/Footer.css';
 import './App.css';
 
 const NotFound = (props) => (
@@ -41,42 +42,50 @@ function App() {
 
   return (
     <>
-    <div className="app-container">
-      <Router>
-        <Navbar signInButton={signInButton} setCookie={setCookie} />
-        
-        <Routes>
-          <Route path='/' element={<Home setSignInButton={setSignInButton} />} />
-          <Route path='/loader' element={<Loader />} />
-          <Route path='/aboutus' element={<AboutUs setSignInButton={setSignInButton} />} />
-          <Route path='/toll' element={<TollLogin setCookie={setCookie} selectedToll={selectedToll} setSelectedToll={setSelectedToll} setSignInButton={setSignInButton} />} />
-          {!cookie &&
-            <>
-              <Route path='/toll/start' element={<NoAccess />} />
-              <Route path='/toll/upload' element={<NoAccess />} />
-              <Route path='/toll/checkrecords' element={<NoAccess />} />
-            </>
-          }
+      <div className="app-container">
+        <Router>
+          <Navbar signInButton={signInButton} setCookie={setCookie} />
 
-          {cookie &&
-            <>
-              <Route path='/toll/start' element={<TollStart selectedToll={selectedToll} setSignInButton={setSignInButton} />} />
-              <Route path='/toll/upload' element={<TollUpload selectedToll={selectedToll} setSignInButton={setSignInButton} />} />
-              <Route path='/toll/checkrecords' element={<CheckRecords selectedToll={selectedToll} setSignInButton={setSignInButton} />} />
-            </>
-          }
+          <Routes>
+            <Route path='/' element={<Home setSignInButton={setSignInButton} />} />
+            <Route path='/loader' element={<Loader />} />
+            <Route path='/aboutus' element={<AboutUs setSignInButton={setSignInButton} />} />
+            <Route path='/toll' element={<TollLogin setCookie={setCookie} selectedToll={selectedToll} setSelectedToll={setSelectedToll} setSignInButton={setSignInButton} />} />
+            {!cookie &&
+              <>
+                <Route path='/toll/start' element={<NoAccess />} />
+                <Route path='/toll/upload' element={<NoAccess />} />
+                <Route path='/toll/checkrecords' element={<NoAccess />} />
+              </>
+            }
+
+            {cookie &&
+              <>
+                <Route path='/toll/start' element={<TollStart selectedToll={selectedToll} setSignInButton={setSignInButton} />} />
+                <Route path='/toll/upload' element={<TollUpload selectedToll={selectedToll} setSignInButton={setSignInButton} />} />
+                <Route path='/toll/checkrecords' element={<CheckRecords selectedToll={selectedToll} setSignInButton={setSignInButton} />} />
+              </>
+            }
 
 
-          <Route path='/stats' element={<Statistics setSignInButton={setSignInButton} />} />
-          <Route path='/guest' element={<Guest setSignInButton={setSignInButton} />} />
-          <Route path='/guest/upload' element={<GuestUpload setSignInButton={setSignInButton} />} />
-          <Route path='/guest/checkdetails' element={<GuestDetails setSignInButton={setSignInButton} />} />
-          <Route path='*' element={<NotFound setSignInButton={setSignInButton} />} />
-        </Routes>
-      </Router>
-    </div>
-        {/* <Footer setSignInButton={setSignInButton} setCookie={setCookie}/> */}
-        </>
+            <Route path='/stats' element={<Statistics setSignInButton={setSignInButton} />} />
+            <Route path='/guest' element={<Guest setSignInButton={setSignInButton} />} />
+            <Route path='/guest/upload' element={<GuestUpload setSignInButton={setSignInButton} />} />
+            <Route path='/guest/checkdetails' element={<GuestDetails setSignInButton={setSignInButton} />} />
+            <Route path='*' element={<NotFound setSignInButton={setSignInButton} />} />
+          </Routes>
+        </Router>
+      </div>
+      <div className='footer'>
+            <Router>
+              <Routes>
+              <Route path='*' element={<Footer />} />
+              </Routes>
+              
+            </Router>
+      </div>
+
+    </>
   );
 }
 

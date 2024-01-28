@@ -4,10 +4,10 @@ export default function AboutUs(props) {
   props.setSignInButton(true);
   return (
     <div className="AboutUs">
-      <div className="row row-cols-1 row-cols-sm-2 g-4">
+      <div className="row row-cols-3">
         <div className="col">
-          <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+          <div className="card text-center">
+            <img src={require('../images/Varun.jpg')} className="card-img-top" style={{width:'200px'}} alt="Varun" />
             <div className="card-body">
               <h5 className="card-title">Varun</h5>
               <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis suscipit laboriosam perferendis labore reiciendis accusamus vitae modi porro. Cumque, in.</p>

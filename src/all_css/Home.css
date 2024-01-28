@@ -13,11 +13,17 @@ body {
   /* background-attachment: fixed; */
   /* background-size: cover; */
   font-family: 'Poppins';
-
+  overflow-x: hidden;
+  
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+.app-container {
+  min-height: 100vh;
 }
