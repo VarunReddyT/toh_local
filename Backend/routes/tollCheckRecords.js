@@ -25,7 +25,6 @@ router.get('/checkRecords', auth, async (req, res) => {
                         'userMobileNumber': data.userMobileNumber,
                         'tyreStatus': data.tyreStatus,
                         'vehicleNumber': data.vehicleNumber,
-                        // 'userTyre64' : data.userTyre64,
                     }
                 );
             });

@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const firstSchema = new mongoose.Schema({
-    date : String,
+    date: {
+        type: String,
+        default: () => new Date().toISOString().split('T')[0]
+    },
+
     vehicleNumber: String,
     userMobileNumber: String,
-    userTyre64: String,
-    tyreStatus : Object,
-    tollPlaza : String,
-}); 
+    userTyre64: Object,
+    tyreStatus: Object,
+    tollPlaza : String
+});
 
 const TollData = mongoose.model('first', firstSchema);
 

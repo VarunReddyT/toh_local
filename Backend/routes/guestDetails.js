@@ -12,19 +12,18 @@ router.get('/guestDet', async (req, res) => {
     console.log("GuestDetails Route");
     try {
       const vehicleNumber = req.query.vehicleNumber;
-      console.log("Input : VehicleNo : ", vehicleNumber);
-      const tollData = await TollData.find({ vehicleNumber: vehicleNumber });
-      console.log("Output : PhoneNo : ", tollData[0].userMobileNumber);
-      console.log("Output : TyreStatus : ", tollData[0].tyreStatus);
-      console.log("Output : TollPlaza : ", tollData[0].tollPlaza);
-      console.log("Output : Date : ", tollData[0].date);
-      console.log("Over")
+
+      const tollData = await TollData.findOne({ vehicleNumber: vehicleNumber });
+      console.log(tollData);
+      if (!tollData) {
+        console.log("No Data Found");
+        return res.send("No Data Found");
+      }
       res.send(tollData);
     }
     catch (err) {
-      console.error('Error getting data from MongoDB:', err);
-      // res.status(500).send('Internal Server Error');
-      res.send("No Data Found");
+      console.log("Error from MongoDB",err);
+      res.send(err);
     }
   });
 module.exports = router;

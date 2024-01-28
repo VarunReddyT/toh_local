@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const TollData = require('../models/TollDataSch');
 const cors = require('cors');
+router.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+}));
 
 router.get('/stats',async(req,res)=>{
     try{

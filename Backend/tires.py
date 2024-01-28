@@ -2,7 +2,6 @@ import os
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from tensorflow.keras.layers import *
-from tensorflow.keras.layers import *
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras.optimizers import Adam
 # from tensorflow.keras.losses import BinaryCrossentropy
@@ -14,9 +13,8 @@ import warnings
 warnings.filterwarnings('ignore')
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
-
-MAIN_PATH = "C:/Users/yssmc/Downloads/archive/Tire Textures/training_data"
-TEST_PATH = "C:/Users/yssmc/Downloads/archive/Tire Textures/testing_data"
+MAIN_PATH = "C:/Users/pvrkm/Programming/TOH/TOH_app/TireTextures/training_data"
+TEST_PATH = "C:/Users/pvrkm/Programming/TOH/TOH_app/TireTextures/testing_data"
 CLASSES = os.listdir(MAIN_PATH)
 NUM_CLASSES = len(CLASSES)
 NUM_TEST_IMAGES = len(os.listdir(os.path.join(TEST_PATH,"cracked")))+len(os.listdir(os.path.join(TEST_PATH,"normal")))

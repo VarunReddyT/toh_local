@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function loader() {
+export default function Loader() {
   return (
     <div>
-        <div class="loader">
+        <div className="loader">
   <svg
     
     viewBox="0 0 254.532 254.532"
@@ -11,7 +11,7 @@ export default function loader() {
     xmlns="http://www.w3.org/2000/svg"
     id="Capa_1"
     version="1.1"
-    class="wheel"
+    className="wheel"
   >
     <g>
       <path
@@ -43,7 +43,7 @@ export default function loader() {
       ></path>
     </g>
   </svg>
-  <div class="road"></div>
+  <div className="road"></div>
 </div>
 
     </div>

@@ -37,7 +37,7 @@ router.post('/login', Tollupload.any(), async (req, res) => {
             console.log("Password Matched");
             try {
               const token = createToken(user._id);
-              console.log(token);
+              // console.log(token);
               res.cookie('tollLogin', token, {  maxAge: 60 * 60 * 1000 });
               // sameSite: 'None'  -> for CORS purposes and controlling the cookie to be sent only to the same origin
               // secure : true -> is not recommended for development purposes as we can't access a cookie using document.cookie in the client side 

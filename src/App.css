@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  min-height: 80vh;
+}
+
+/* .app-container {
+  min-height: 70vh;
+  position: relative;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+} */

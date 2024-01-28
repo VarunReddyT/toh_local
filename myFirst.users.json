@@ -1,0 +1,89 @@
+[{
+  "_id": {
+    "$oid": "658d4b79b1cfaaba764b18ad"
+  },
+  "password": "$2b$10$5eQ34UZHECBZp17C0/jxRunorLoZ0PZgK64AQwMRzX9XoIf5d/Tfy",
+  "__v": 0,
+  "username": "Mumbai"
+},
+{
+  "_id": {
+    "$oid": "658d4bdeb1cfaaba764b18af"
+  },
+  "password": "$2b$10$Dt7dV5dDYw3SVSLGBGfHxuGc9aaODlE5YRU6zTNRPXYUo69JpTkV.",
+  "username": "Hyderabad",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4bfab1cfaaba764b18b1"
+  },
+  "password": "$2b$10$gAvUR4BNW4dh.KqSzeJcd.oEgNy2LzxMbZW5nlSPxSEPOdEqmwYKq",
+  "username": "Delhi",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c12b1cfaaba764b18b3"
+  },
+  "password": "$2b$10$l.rPOahflu.DJBLgMIobQu.Py9yjyoj6wO.Pvqdk.M//cA/vvquOK",
+  "username": "Bangalore",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c24b1cfaaba764b18b5"
+  },
+  "password": "$2b$10$YzJaX/2OKwZgQzGMn4BVBu6lg.oWmdlJqDmHh..c35pxN0kMJC/8i",
+  "username": "Mumbai",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c4cb1cfaaba764b18b9"
+  },
+  "password": "$2b$10$R8x7PajEgzuHeFrsY.EByuFMfeVGaJLH1TifTocnhNzbeZMTb0knC",
+  "username": "Chennai",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c61b1cfaaba764b18bb"
+  },
+  "password": "$2b$10$mIPWUMVpP./z4ylObr9D/u417oZQM4OgFV34yQUqzjmNf4HKvaL7K",
+  "username": "Kolkata",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c7ab1cfaaba764b18bd"
+  },
+  "password": "$2b$10$E2.FfA.5Vb6IhqiN7kVHTOyUJE3edOfXEMdFgOLY5ZGNNH7NBvtEu",
+  "username": "Ahmedabad",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c8ab1cfaaba764b18bf"
+  },
+  "password": "$2b$10$lR3roZf89UwLyNb8QrhKUOnoiex717B8fKOtNGB/OJ/scKmvWQKVS",
+  "username": "Pune",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4c9fb1cfaaba764b18c1"
+  },
+  "password": "$2b$10$SOyYIULrvFGh7.R7sn9P7OffcETmSam8c1tyz015QRTM6u2lMSqTK",
+  "username": "Surat",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "658d4cb2b1cfaaba764b18c3"
+  },
+  "password": "$2b$10$Sz8IrCLYurxaLf7Iifm.WeD6BQ0WDsGajMcbd147S6yGxk427eXSG",
+  "username": "Jaipur",
+  "__v": 0
+}
+]

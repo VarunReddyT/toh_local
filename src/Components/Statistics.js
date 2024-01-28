@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
 
-export default function Statistics() {
+export default function Statistics(props) {
+  props.setSignInButton(true);
   const [stats, setStats] = useState([]);
 
   async function getStats() {
@@ -30,8 +31,8 @@ export default function Statistics() {
   };
 
   return (
-    <div className='container'>
-      <Chart
+    <div className='container shadow-lg border border-white p-4 rounded-4 bg-white'>
+      <Chart className=''
         chartType="PieChart"
         data={data}
         options={options}
