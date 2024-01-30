@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { useState } from "react";
 import axios from "axios";
 import Loader from './Loader.js';
@@ -10,7 +10,6 @@ export default function GuestUpload(props) {
     const [base64String, setBase64String] = useState([]);
     const [loader, setLoader] = useState(false);
     const [res, setRes] = useState(false);
-    const [error, setError] = useState(null);
 
     const handleFileChange = (e) => {
         setClassificationResult([]);
@@ -18,9 +17,9 @@ export default function GuestUpload(props) {
         setIm([]);
         setLoader(false);
         setRes(false);
-        setError(null);
 
         for (let i = 0; i < e.target.files.length; i++) {
+
             const selected = e.target.files[i];
             setIm(s => [...s, selected]);
             function convertToBase64(selected) {
@@ -31,89 +30,118 @@ export default function GuestUpload(props) {
                         setBase64String(b => [...b, base]);
                     };
                     reader.readAsDataURL(selected);
-                } else {
+
+                }
+                else {
                     console.log("Error converting to base64String");
                 }
             }
             convertToBase64(selected);
         }
+
     };
 
-    const handleUpload = async (e) => {
-        e.preventDefault();
+
+    const handleUpload = (e) => {
         setClassificationResult([]);
         setRes(false);
+        e.preventDefault();
         setLoader(true);
-        setError(null);
-
         if (im.length > 0) {
+
             const formData = new FormData();
             for (let i = 0; i < im.length; i++) {
-                const gui = `GuestUploadImage${i}`;
+                // console.log("Image No. ", i + 1);
+                // console.log(im[i]);
+                const gui = `GuestUploadImage${i}`
                 formData.append(gui, im[i]);
             }
+            async function makeReq(formData) {
+                try {
+                    console.log("formData", formData.getAll('GuestUploadImage0'));
+                    const response = await axios.post(`http://${window.location.hostname}:4000/guestUp`, formData)
+                    console.log(response.data[0]);
+                    setLoader(false);
+                    setRes(true);
+                    setClassificationResult(response.data);
 
-            try {
-                const response = await axios.post(`http://${window.location.hostname}:4000/guestUp`, formData);
-                setLoader(false);
-                setRes(true);
-                setClassificationResult(response.data);
-            } catch (error) {
-                console.log("Error occurred in making request to server", error.response);
-                setLoader(false);
-                setError("Error uploading images. Please try again.");
+                } catch (error) {
+                    console.log("Error occured in making request to server", error);
+                    setLoader(false);
+                    setRes(false);
+                }
             }
-        } else {
-            setError("No file selected");
+            makeReq(formData);
+        }
+        else {
             console.error("No file selected");
         }
     };
 
+
     return (
-        <div className="container d-flex justify-content-center mt-5">
-            <div className="GuestUpload container rounded-4 p-3" style={{ backdropFilter: 'blur(15px)', maxWidth: '450px', maxHeight: '200px' }}>
-                <form onSubmit={handleUpload} id='form'>
+
+        <div className="container d-flex justify-content-cenetr  mt-5 " style={{ maxWidth: "600px" }}>
+            <div className="GuestUpload container  rounded-4 p-3 bg-black border border-white border-3" >
+                <form onSubmit={handleUpload} id='form' >
                     <div className="row text-center mb-3">
                         <h1 style={{ color: 'white' }}>Upload Tire</h1>
                     </div>
                     <div className="image row">
-                        <div className="col mt-3">
-                            <input style={{ borderColor: 'black' }} onChange={handleFileChange} type="file" multiple accept="image/*" name="tyre" className="image form-control" required />
+                        <div className="col">
+                            <input style={{ borderColor: 'black' }} onChange={handleFileChange} type="file" multiple accept="image/*" name="tyre" className="image form-control " required />
                         </div>
-                        <div className="row mt-4">
-                            <div className="col-4 mt-2 ms-5">
-                                <Link to="/guest" className="btn btn-warning">Go Back</Link>
+                        <div className="row">
+                            <div className="col mt-2 ">
+                                <Link to="/guest"
+                                    className="btn btn-warning" >Go Back
+                                </Link>
                             </div>
-                            <div className="col mt-2">
-                                {res && <button className="btn btn-success mb-2 ms-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Result</button>}
-                            </div>
-                            <div className="col">
-                                <button type='submit' className="btn btn-primary mt-2 mb-2">Submit</button>
+                            {res && !loader && <div className="col mt-2">
+                                <button className="btn btn-success mb-2 ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Result</button>
+                                <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" >
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Result</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {classificationResult.map((item, index) => (
+                                                    <div className='row text-center mb-4 mt-3' style={{ color: 'black' }}>
+                                                        <p >Classification : {item.class} </p>
+                                                        <p >Confidence : {item.confidence} </p>
+
+                                                        <div id="getImg" >
+                                                            <img className="enlarge" style={{ width: '200px', height: 'auto', borderRadius: '10px', transition: 'width 0.3s ease' }} // Shrink on mouse out
+
+                                                                src={base64String[index]} alt="Vehicle Tire" />
+                                                        </div>
+                                                        <div></div>
+                                                    </div>))}
+                                                <hr />
+                                                <br />
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>}
+                            <div className="col-sm-2">
+                                <button type='submit' className="btn btn-primary mt-2 mb-2 ">Submit</button>
                             </div>
                         </div>
                         <div className="row mb-2">
-                            {loader && <Loader />}
-                            {error && <div className="alert alert-danger mt-2" role="alert">{error}</div>}
+                            {(!res && loader) && (<Loader />)}
                         </div>
-                        <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-                            <div className="offcanvas-header">
-                                <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Result</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div className="offcanvas-body">
-                                {res && classificationResult.map((item, index) => (
-                                    <div className='row text-center mb-4 mt-3' key={index}>
-                                        <p>Classification : {item.class} </p>
-                                        <p>Confidence : {item.confidence} </p>
-                                        <div id="getImg" >
-                                            <img className="enlarge" style={{ width: '200px', height: 'auto', borderRadius: '10px', transition: 'width 0.3s ease' }} src={base64String[index]} alt="Vehicle Tire" />
-                                        </div>
-                                        <hr />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+
                     </div>
+
+
                 </form>
             </div>
         </div>

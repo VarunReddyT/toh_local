@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState} from 'react';
+import { useState,useRef,useEffect } from 'react';
 
 
 // import axios from 'axios'
 // import { useNavigate } from 'react-router-dom'
 export default function Navbar({ signInButton }) {
   const [modal, setModal] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const modalRef = useRef(null);
   // const handleLogOut = async (e) => {
   //   e.preventDefault()
   //   const response = await axios.get(`http://${window.location.hostname}:4000/logout`, { withCredentials: true })
@@ -15,16 +16,32 @@ export default function Navbar({ signInButton }) {
   //     navigate('/toll/logoutwarning');
   //   }
   // }
-      function handleOpenModal(){
-        setModal(true);
-      }
-      function handleCloseModal(){
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
         setModal(false);
-        navigate('/');
       }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef, navigate]);
+
+  function handleOpenModal() {
+    setModal(true);
+  }
+  function handleCloseModal() {
+    setModal(false);
+    navigate('/');
+  }
+  function modalClose() {
+    setModal(false);
+  }
 
   return (
-    <nav className="container navbar navbar-expand-lg border border-2 border-white rounded-5 w-75 mt-3  border-body fixed-top" style={{background:'#333333'}} data-bs-theme="dark">
+    <nav className="container navbar navbar-expand-lg border border-2 border-white rounded-5 w-75 mt-3  border-body fixed-top" style={{ background: '#333333' }} data-bs-theme="dark">
       <div className="container-fluid">
         <Link className="btn btn-light btn-outline-dark rounded-5 me-2" to="/">Home</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,31 +61,31 @@ export default function Navbar({ signInButton }) {
           )}
 
           {!signInButton && (
-          <div>
-          <button type="button" className="nav-item btn rounded-5 btn-danger btn-outline-dark text-white" data-bs-target="#exampleModal" onClick={handleOpenModal}>Sign Out</button>
-          </div>
+            <div>
+              <button type="button" className="nav-item btn rounded-5 btn-danger btn-outline-dark text-white" data-bs-target="#exampleModal" onClick={handleOpenModal}>Sign Out</button>
+            </div>
           )
           }
           {modal && (
             <div>
-          <div className="modal show" style={{ display: 'flex', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} data-bs-dismiss = 'modal'>
-          <div className="modal-dialog" style={{ width: '100%', margin: 'auto' }}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="btn-close" data-bs-dismiss = 'modal' ></button>
+              <div className="modal show" style={{ display: 'flex', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} data-bs-dismiss='modal'>
+                <div className="modal-dialog" style={{ width: '100%', margin: 'auto' }}>
+                  <div className="modal-content" ref={modalRef}>
+                    <div className="modal-header text-light">
+                      <button type="button" className="btn-close" onClick={modalClose} data-bs-dismiss='modal' ></button>
+                    </div>
+                    <div className="modal-body" style={{ color: 'white' }}>
+                      Are you sure ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" className="nav-item btn rounded-5 btn-danger btn-outline-dark text-white" data-bs-dismiss='modal' onClick={handleCloseModal}>Sign Out</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="modal-body" style={{color:'white'}}>
-                Are you sure ?
-              </div>
-              <div class="modal-footer">
-        <button type="button" className="nav-item btn rounded-5 btn-danger btn-outline-dark text-white" data-bs-dismiss='modal' onClick={handleCloseModal}>Sign Out</button>
-      </div>
             </div>
-          </div>
-        </div>
-        </div>
           )}
-          
+
         </div>
       </div>
     </nav>

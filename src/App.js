@@ -81,7 +81,6 @@ function App() {
               <Routes>
               <Route path='*' element={<Footer />} />
               </Routes>
-              
             </Router>
       </div>
 
