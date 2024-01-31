@@ -86,20 +86,21 @@ export default function GuestDetails(props) {
     return (
 
         <div className="container d-flex justify-content-center align-items-center">
-            <div className='rounded-4 p-4 bg-black  border border-3 border-white mt-5' style={{ maxWidth: "600px" }} >
+            <div className='rounded-4 p-4 border border-3 border-white mt-5' style={{ maxWidth: "600px" }} >
                 <div className='row'>
                     <form onSubmit={handleSubmit}>
                         <div className='col'>
-                            <h1 style={{ color: 'white' }}>Check Your Vehicle Details</h1>
+                            <h1>Check Your Vehicle Details</h1>
                         </div>
-                        <div className="col">
+                        <div className="col mt-3">
                             <input type="text" onChange={handleVnoChange} className="form-control border border-black" placeholder='Vehicle Number' name="VehicleNumber" id="vehicleU" required />
                         </div>
-                        <div className="row">
-                            <div className="col-sm-3 mt-2">
-                                <Link to="/guest" className="btn btn-warning back" id="blackbut">Go Back</Link>
+                        <div>
+                        <div className="d-flex mt-3 justify-content-lg-around">
+                            <div className="">
+                                <Link to="/guest" className="btn btn-warning" id="blackbut">Go Back</Link>
                             </div>
-                            {res && <div className="col-sm-3 mt-2">
+                            {res && <div className="ms-3">
                                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#backdrop" >Result</button>
                                 <div className="modal fade" id="backdrop" tabIndex="-1" aria-labelledby="backdropLabel" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -134,13 +135,15 @@ export default function GuestDetails(props) {
                                     </div>
                                 </div>
                             </div>}
-                            {NoData && <div className="col-sm-3 mt-2 me-1">
-                                <p class="btn btn-danger">NotFound</p>
-                            </div>}
-                            <div className="col-sm-3 mt-2">
-                                <button type="submit" className="btn btn-primary detSub">Submit</button>
+                            
+                            <div className="ms-3">
+                                <button type="submit" className="btn btn-primary">Submit</button>
                             </div>
                         </div>
+                        </div>
+                        {NoData && <div className="container d-flex justify-content-center align-items-center h-50">
+                                <p className="alert alert-danger">NotFound</p>
+                            </div>}
                         {loader && <Loader />}
 
                     </form>

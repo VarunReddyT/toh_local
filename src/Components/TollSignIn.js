@@ -90,9 +90,9 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
   return (
     <div className='container d-flex justify-content-center align-items-center'>
       <div className='mt-4 '>
-        <form className="shadow-lg rounded-4 p-4 border-3 bg-black" >
+        <form className="shadow-lg rounded-4 p-4 border-3" >
           <div className='row'>
-            <h1 style={{ color: 'white' }}>Sign In to Toll Plaza</h1>
+            <h1>Sign In to Toll Plaza</h1>
           </div>
           <div className='row'>
             <div className="">
@@ -113,7 +113,7 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
           </div>
           <div className="row mt-3">
             <div className="">
-            <label className="c" style={{ backgroundColor: 'white' }}> 
+            <label className="c"> 
               <input style={{ color: 'black' }} type="password" className="form-control" id="pwd" required value={pwd} placeholder="Password" onChange={handlePwdChange} />
                
                 {eye &&
@@ -138,7 +138,7 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
             <p style={{ color: displayMessage.includes("Invalid") ? "red" : "yellow" }}>{displayMessage}</p>
           </div>}
           <div className="input-group mt-3 row">
-            <div className="d-flex">
+            <div className="d-flex justify-content-lg-around ">
               <Link to="/"
                 type="button" className="btn btn-warning mt-1 ">
                 GoBack

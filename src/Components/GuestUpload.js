@@ -82,22 +82,22 @@ export default function GuestUpload(props) {
     return (
 
         <div className="container d-flex justify-content-cenetr  mt-5 " style={{ maxWidth: "600px" }}>
-            <div className="GuestUpload container  rounded-4 p-3 bg-black border border-white border-3" >
+            <div className="rounded-4 p-3 border border-black border-3" >
                 <form onSubmit={handleUpload} id='form' >
                     <div className="row text-center mb-3">
-                        <h1 style={{ color: 'white' }}>Upload Tire</h1>
+                        <h1 style={{ color: 'black' }}>Upload Tire</h1>
                     </div>
                     <div className="image row">
                         <div className="col">
-                            <input style={{ borderColor: 'black' }} onChange={handleFileChange} type="file" multiple accept="image/*" name="tyre" className="image form-control " required />
+                            <input onChange={handleFileChange} type="file" multiple accept="image/*" name="tyre" className="image form-control " required />
                         </div>
-                        <div className="row">
-                            <div className="col mt-2 ">
+                        <div className="row mt-4">
+                            <div className="col">
                                 <Link to="/guest"
                                     className="btn btn-warning" >Go Back
                                 </Link>
                             </div>
-                            {res && !loader && <div className="col mt-2">
+                            {res && !loader && <div className="col">
                                 <button className="btn btn-success mb-2 ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Result</button>
                                 <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" >
@@ -132,7 +132,7 @@ export default function GuestUpload(props) {
                                 </div>
                             </div>}
                             <div className="col-sm-2">
-                                <button type='submit' className="btn btn-primary mt-2 mb-2 ">Submit</button>
+                                <button type='submit' className="btn btn-primary">Submit</button>
                             </div>
                         </div>
                         <div className="row mb-2">

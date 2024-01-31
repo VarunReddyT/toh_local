@@ -11,7 +11,7 @@ body {
   /* background: fixed; */
   /* display: flex; */
   /* background-attachment: fixed; */
-  /* background-size: cover; */
+  background-size: cover;
   font-family: 'Poppins';
   overflow-x: hidden;
   

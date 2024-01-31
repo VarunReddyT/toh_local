@@ -149,16 +149,16 @@ export default function TollUpload(props) {
   }
 
   return (
-    <div className="container d-flex justify-content-center align-items-center">
-      <div className='m-0'>
+    <div className="container d-flex justify-content-center align-items-center mt-2" style={{fontWeight:'bold'}}>
+      <div className='m-0 ' style={{backdropFilter:'blur(10px)'}}>
         <form onSubmit={handleSubmit} style={{maxWidth:'500px',width:'100%'}} className='shadow-lg rounded-4 border border-black p-4' encType='multipart/form-data' id='TollUploadForm'>
           <div id="TollUploadText">
             <h1>Upload the data</h1>
           </div>
           <div className="col">
             <label htmlFor="TollVehicleNumber" id="TollVehNo" className="form-label">VehicleNumber</label>
-            <input type="text" className="form-control "  onChange={handleVNOChange} id="TollVehicleNumber" required style={{ textTransform: 'uppercase' }} />
-          </div>
+            <input type="text" className="form-control" onChange={handleVNOChange} id="TollVehicleNumber" required style={{ textTransform: 'uppercase'}} />
+          </div>  
           <div className="col mt-2">
             <label htmlFor="TollUserMobileNo" id="TollUserNo" className="form-label">User Mobile Number</label>
             <input type="number" className="form-control " placeholder='XXXXXXXXXX' onChange={handleMNOChange} id="TollUserMobileNo" required />

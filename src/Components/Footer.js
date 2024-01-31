@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   // props.setSignInButton(true);
   return (
-    <footer className='footer  container-fluid'>
+    <footer className='footer'>
       <div className=' bg-light mb-0 '>
         <div className="row border-bottom">
           <div className="col-sm-4 d-flex justify-content-center">
