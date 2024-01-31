@@ -9,7 +9,7 @@ export default function Home(props){
             <div className="row mt-5">
                 <h1>TIRES ON HIGHWAYS</h1>
                 <div className="mt-5">
-                    <Link to='/guest'><button type="button" className="btn btn-lg btn-light mt-3">Continue as Guest</button></Link>
+                    <Link to='/guest'><button type="button" className="btn btn-lg btn-dark mt-3">Continue as Guest</button></Link>
                 </div>
             </div>
         </div>

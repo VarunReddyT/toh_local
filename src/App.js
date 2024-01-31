@@ -18,6 +18,7 @@ import Footer from './Components/Footer';
 import './all_css/Home.css';
 import './all_css/Loader.css';
 import './all_css/Footer.css';
+import './all_css/TollSignIn.css';
 import './App.css';
 
 const NotFound = (props) => (
