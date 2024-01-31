@@ -4,7 +4,7 @@
   "description": "TOH_backend",
   "main": "Routes.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "concurrently \"nodemon index\" \"python flask_api.py\""
   },
   "author": "",
   "license": "ISC",

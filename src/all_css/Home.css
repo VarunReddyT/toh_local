@@ -27,3 +27,10 @@ input::-webkit-inner-spin-button {
 .app-container {
   min-height: 100vh;
 }
+
+
+@media screen and (max-width: 900px) {
+  body {
+    background-image: url('highway3.jpg');
+  }
+}

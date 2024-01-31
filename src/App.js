@@ -46,7 +46,6 @@ function App() {
       <div className="app-container">
         <Router>
           <Navbar signInButton={signInButton} setCookie={setCookie} />
-
           <Routes>
             <Route path='/' element={<Home setSignInButton={setSignInButton} />} />
             <Route path='/loader' element={<Loader />} />
@@ -80,7 +79,7 @@ function App() {
       <div className='footer'>
             <Router>
               <Routes>
-              <Route path='*' element={<Footer />} />
+              <Route path='*' element={<Footer/>} />
               </Routes>
             </Router>
       </div>

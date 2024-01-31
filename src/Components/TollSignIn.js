@@ -135,7 +135,7 @@ export default function TollLogin({ setSelectedToll, setSignInButton, setCookie 
             </div>
           </div>
           {displayMessage && <div className="row mt-2 mb-0">
-            <p style={{ color: displayMessage.includes("Invalid") ? "red" : "yellow" }}>{displayMessage}</p>
+            <p className='alert alert-warning' style={{ color: displayMessage.includes("Invalid") ? "red" : "black" }}>{displayMessage}</p>
           </div>}
           <div className="input-group mt-3 row">
             <div className="d-flex justify-content-lg-around ">

@@ -142,7 +142,7 @@ export default function GuestDetails(props) {
                         </div>
                         </div>
                         {NoData && <div className="container d-flex justify-content-center align-items-center h-50">
-                                <p className="alert alert-danger">NotFound</p>
+                                <p className="alert alert-danger">No data found</p>
                             </div>}
                         {loader && <Loader />}
 

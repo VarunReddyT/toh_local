@@ -22,9 +22,7 @@ export default function Footer() {
                   <li className='ps-2'>
                     <Link to='/aboutus'>About</Link>
                   </li>
-                  <li className='ps-2'>
-                    <Link to='/Howto'>How to</Link>
-                  </li>
+                  
                 </ul>
               </div>
 

@@ -10,9 +10,10 @@ export default function CheckRecords(props) {
   const [tireStatus, setTireStatus] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [records, setRecords] = useState(null);
-  const [loader, setLoader] = useState(false); // Loader
+  const [loader, setLoader] = useState(false);
   const [resp, setResp] = useState([]);
   const navigate = useNavigate();
+  const [thead , setThead] = useState(false)
   const date = new Date();
   let m = date.getMonth() + 1;
   let d = date.getDate();
@@ -23,9 +24,10 @@ export default function CheckRecords(props) {
   const dateS = date.getFullYear() + '-' + m + '-' + String(d);
 
   async function checkDate(e) {
+    setThead(false)
+    setRecords(null)
     setLoader(true);
     e.preventDefault();
-    console.log(props.selectedToll)
     try {
       const response = await axios.get(`http://${window.location.hostname}:4000/checkRecords`, {
         params: {
@@ -36,16 +38,10 @@ export default function CheckRecords(props) {
       });
       setResp(response.data);
       setLoader(false);
-
-      setRecords(response.data.length);
-
-      // setTableData(tableRows);
-      // console.log(response.data);
-      console.log(records);
-      // document.getElementById('p').innerHTML = "Total Records : " + resp.length;
+      response.data.length===0?setThead(false):setThead(true);
+      setRecords(`${response.data.length}`);
     } catch (err) {
       console.log(err);
-      // alert("No Data Found");
     }
   }
 
@@ -82,50 +78,45 @@ export default function CheckRecords(props) {
     }
   }
 
-  // const handleCloseModal = () => {
-  //   setShowModal(false);
-  //   setSelectedImage([]);
-  // }
-
   const goTo = () => {
     navigate('/toll/start');
   }
 
   return (
-    <div>
-      <h1 className='mt-3 text-center'>Check Records</h1>
+    <div className='parenth'>
       <div className='container text-center'>
-        <form onSubmit={checkDate}>
-          <label htmlFor='date'>Enter date : &nbsp;</label>
-          <input type='date' name='date' className='me-3' onChange={handleDateChange} max={dateS} required></input>
+      <h1 className='mt-5 border border-white border-3 rounded-5 p-4' style={{backdropFilter:'blur(5px)'}} >Toll Check Records : {props.selectedToll}</h1>
+        <form onSubmit={checkDate} style={{backdropFilter:'blur(10px)'}} className='container mb-4 border border-white border-3 rounded-3 p-2   justify-content-center' >
+          <label htmlFor='date'className="mt-1 mb-2 container  align-items-center"style={{color:'white',}}>Enter date :</label>
+          <input type='date' name='date' className='me-3 ms-3 rounded-3 border border-3 border-white' onChange={handleDateChange} max={dateS} required></input>
           {!loader && <input type='submit' className='btn btn-primary me-1' value='Check' />}
-          <input type='button' className='btn btn-warning ms-1' onClick={goTo} value='Go Back' />
-
+          <input type='button' className='btn btn-warning ms-2' onClick={goTo} value='Go Back' />
           {loader && <Loader />}
-        </form>
+        {records && !loader &&
         <div id='p' className='mt-3 mb-3'>
-          {records && <p>Total Records : {records}</p>}
+
+          {records==='0'? <p className='alert alert-danger'>No Records</p>:<p className='alert alert-warning'>Total Records : {records}</p>}
         </div>
+        }
+        </form>
       </div>
 
       <div className=' table-responsive'>
         {
-          records &&
-          <table className="table table-light table-bordered">
-            <thead>
-              <tr>
+          thead &&
+          <table className="table table-light container text-center">
+            <thead  >
+              <tr >
                 <th scope="col">Vehicle Number</th>
                 <th scope="col">Mobile Number</th>
                 <th scope="col" style={{ width: 'auto' }}>Image</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {resp.map((item, index) => (
                 <tr key={index}>
                   <td>{item.vehicleNumber}</td>
                   <td>{item.userMobileNumber}</td>
-                  {/* <td>{item.tyreStatus[0].class}</td> */}
-                  {/* <td>{item.tyreStatus[0].confidence}</td> */}
                   <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal" onClick={() => getImage(item.vehicleNumber)}>
                     Image(s)
                   </button>
@@ -138,20 +129,20 @@ export default function CheckRecords(props) {
                               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-                              { showModal &&
-                              tireStatus.map((item, index) => (<div className='row text-center mt-3 '>
-                                <div id="getImg" >
-                                  <img className="enlarge" style={{ width: '200px', height: 'auto', borderRadius: '10px', transition: 'width 0.3s ease' }} // Shrink on mouse out
-                                    src={selectedImage[index]} alt="Vehicle Tire" />
-                                </div>
-                                <p >Classification : {item.class} </p>
-                                <p >Confidence : {item.confidence} </p>
-                                
-
-                              </div>))}
+                              {showModal &&
+                                tireStatus.map((item, index) => (<div className='row text-center mt-3 '>
+                                  <div id="getImg" >
+                                    <img className="enlarge" style={{ width: '200px', height: 'auto', borderRadius: '10px', transition: 'width 0.3s ease' }} // Shrink on mouse out
+                                      src={selectedImage[index]} alt="Vehicle Tire" />
+                                  </div>
+                                  <p >Classification : {item.class} </p>
+                                  <p >Confidence : {item.confidence} </p>
+                                  <hr/>
+                                  <br/>
+                                </div>))}
                               {
-                                !showModal && 
-                                 <Loader />
+                                !showModal &&
+                                <Loader />
                               }
                             </div>
                             <div class="modal-footer">
@@ -160,7 +151,6 @@ export default function CheckRecords(props) {
                           </div>
                         </div>
                       </div>
-
                     }
                   </td>
                 </tr>
@@ -169,9 +159,6 @@ export default function CheckRecords(props) {
           </table>
         }
       </div>
-
-
-
     </div>
   )
 }
