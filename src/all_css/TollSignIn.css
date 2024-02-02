@@ -1,0 +1,17 @@
+.c {
+    size: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .c .eye {
+    position: absolute;
+    right: 5px;
+  }
+  
+  .c .eye-slash {
+    position: absolute;
+    right: 5px;
+  }

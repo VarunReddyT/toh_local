@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  
+  /* background-image: linear-gradient(to top,#bcd2d0,#e1e9b7); */
+
+  /* background-image: url('tireT.jpg'); */
+  color: black;
+  background-image: url('highway2.jpg');
+
+  /* background: fixed; */
+  /* display: flex; */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  font-family: 'Poppins';
+  overflow-x: hidden;
+  
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.app-container {
+  min-height: 100vh;
+}
+
+
+@media screen and (max-width: 750px) {
+  body {
+    background-image: url('highway3.jpg');
+  }
+}
