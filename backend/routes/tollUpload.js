@@ -60,12 +60,12 @@ router.post('/tollupload', auth, Tollupload.any(), async (req, res) => {
                 tyreStatus: tollFlaskResponse,
                 tollPlaza: tollPlaza,
             });
-            let msgs = '';
+            // let msgs = '';
             await tollData.save();
-            for(let i = 0; i<tollFlaskResponse.length; i++){
-                msgs = msgs + `Tyre ${i+1}: ${tollFlaskResponse[i].class}\n`;
-            }
-            sendSMS(date,vehicleNumber,userMobileNumber,tollPlaza,msgs);
+            // for(let i = 0; i<tollFlaskResponse.length; i++){
+            //     msgs = msgs + `Tyre ${i+1}: ${tollFlaskResponse[i].class}\n`;
+            // }
+            // sendSMS(date,vehicleNumber,userMobileNumber,tollPlaza,msgs);
             console.log('Data saved to MongoDB');
             // res.send(Data saved to MongoDB: ${JSON.stringify(tollData, null, 2)});
             res.send("Data saved to MongoDB");
@@ -78,19 +78,19 @@ router.post('/tollupload', auth, Tollupload.any(), async (req, res) => {
         res.status(500).send('Error sending file to flask_api');
 
     }
-    function sendSMS(date,vehicleNumber,userMobileNumber,tollPlaza,msgs) {
-        const accountSid = `${process.env.TWILIO_ACCOUNT_SID}`;
-        const authToken = `${process.env.TWILIO_AUTH_TOKEN}`;
-        const client = require('twilio')(accountSid, authToken);
-        userMobileNumber = '+91'+String(userMobileNumber);
-        console.log(userMobileNumber);
-        client.messages
-            .create({
-                body: `Date: ${date}\nVehicle Number: ${vehicleNumber}\nToll Plaza: ${tollPlaza}\nTyre Status: ${msgs}`,
-                from: '+13344543086',
-                to: userMobileNumber,
-            })
-    }
+    // function sendSMS(date,vehicleNumber,userMobileNumber,tollPlaza,msgs) {
+    //     const accountSid = `${process.env.TWILIO_ACCOUNT_SID}`;
+    //     const authToken = `${process.env.TWILIO_AUTH_TOKEN}`;
+    //     const client = require('twilio')(accountSid, authToken);
+    //     userMobileNumber = '+91'+String(userMobileNumber);
+    //     console.log(userMobileNumber);
+    //     client.messages
+    //         .create({
+    //             body: `Date: ${date}\nVehicle Number: ${vehicleNumber}\nToll Plaza: ${tollPlaza}\nTyre Status:${msgs}`,
+    //             from: '+13344543086',
+    //             to: userMobileNumber,
+    //         })
+    // }
 }
 );
 

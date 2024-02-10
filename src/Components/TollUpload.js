@@ -12,14 +12,23 @@ export default function TollUpload(props) {
   const [vehicleNumber, setVehicleNumber] = useState(null);
   const [userMobileNumber, setUserMobileNo] = useState(null);
   const [loader, setLoader] = useState(false); // Loader
+  const [display , setDisplay] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(false); // Result
   const navigate = useNavigate();
 
+  function validateVehicleNumber(vehicleNumber) {
+    const vehicleRegex = /^([A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4})$/;
+    return vehicleRegex.test(vehicleNumber);
+  }
+  function validatePhoneNumber(userMobileNumber) {
+    const phoneRegex = /^([0-9]{10})$/;
+    return phoneRegex.test(userMobileNumber);
+  }
   useEffect(() => {
     if (uploadStatus) {
       const timeoutId = setTimeout(() => {
         setUploadStatus(false);
-      }, 2000);
+      }, 4000);
 
       return () => clearTimeout(timeoutId); // This will clear the timeout if the component unmounts or if uploadStatus changes before the timeout completes
     }
@@ -39,8 +48,6 @@ export default function TollUpload(props) {
     setLoader(false); // Loader
     setUploadStatus(null);
     setVehicleNumber(event.target.value.toUpperCase());
-
-
   }
 
   const handleMNOChange = (event) => {
@@ -58,30 +65,34 @@ export default function TollUpload(props) {
     for (let i = 0; i < event.target.files.length; i++) {
       const selected = event.target.files[i];
       setImg(s => [...s, selected]);
-      //  function convertToBase64(selected) {
-      //    if (selected) {
-
-      //      //! Converting image to base64String
-      //      const reader = new FileReader();
-      //      reader.onload = (e) => {
-      //        const base = e.target.result;
-      //                   // console.log(base); 
-      //                   setBase64String(b => [...b, base]);
-      //               };
-      //               reader.readAsDataURL(selected);
-
-      //           }
-      //           else {
-      //               console.log("Error converting to base64String");
-      //           }
-      //       }
-      //       convertToBase64(selected);
     }
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
     setUploadStatus(null);
-    setLoader(true); // Loader
+    setLoader(true);
+    setDisplay(false);
+    const validateVNO = validateVehicleNumber(vehicleNumber);
+    const validateMNO = validatePhoneNumber(userMobileNumber);
+    if (!validateVNO && !validateMNO ) {
+      setVehicleNumber(null);
+      setUserMobileNo(null);
+      setDisplay("Invalid Vehicle Number and Mobile Number");
+      setLoader(false);
+      return;
+    }
+    else if (!validateVNO  ) {
+      setVehicleNumber(null);
+      setDisplay("Invalid Vehicle Number");
+      setLoader(false);
+      return;
+    }
+    else if (!validateMNO ) {
+      setUserMobileNo(null);
+      setDisplay("Invalid Mobile Number");
+      setLoader(false);
+      return;
+    }
     if (img.length > 0) {
 
       const requestData = new FormData();
@@ -91,13 +102,6 @@ export default function TollUpload(props) {
         const tui = `TollUploadImage${i}`
         requestData.append(tui, img[i]);
       }
-      // for (let i = 0; i < base64String.length; i++) {
-      //   // console.log("b64 No. ", i + 1);
-      //   // console.log(base64String[i]);
-      //   const b64 = `Base64${i}`
-      //   requestData.append(b64, base64String[i]);
-      // }
-      // console.log(base64String[0]);
 
       requestData.append('vehicleNumber', vehicleNumber);
       requestData.append('userMobileNumber', userMobileNumber);
@@ -105,12 +109,6 @@ export default function TollUpload(props) {
       requestData.append('tollPlaza', props.selectedToll);
 
       async function call_express(requestData) {
-
-        // console.log(requestData.get('vehicleNumber'));
-        // console.log(requestData.get('userMobileNumber'));
-        // console.log(requestData.get('userTyre64'));
-        // console.log(requestData.get('tireImage'));
-
         try {
           const response_express = await axios.post('http://localhost:4000/tollupload', requestData, {
             headers: {
@@ -122,6 +120,7 @@ export default function TollUpload(props) {
           // Handle the response, if needed
           console.log(response_express);
           setLoader(false); // Loader
+          setDisplay(null);
           setUploadStatus("Uploaded Successfully");
           document.getElementById('TollUploadForm').reset();
 
@@ -170,6 +169,8 @@ export default function TollUpload(props) {
 
           {loader && <Loader />}
 
+          {display && <p className='alert alert-danger'>{display}</p>}
+        
           {uploadStatus && (
             <div className='mt-2'>
               <p className='alert alert-success' style={{ color: uploadStatus.includes("Not") ? "red" : "green" }}>{uploadStatus}</p>
