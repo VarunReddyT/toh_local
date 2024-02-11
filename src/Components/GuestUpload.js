@@ -46,6 +46,7 @@ export default function GuestUpload(props) {
         setClassificationResult([]);
         setRes(false);
         e.preventDefault();
+        
         setLoader(true);
         if (im.length > 0) {
 
@@ -64,7 +65,7 @@ export default function GuestUpload(props) {
                     setLoader(false);
                     setRes(true);
                     setClassificationResult(response.data);
-
+                    
                 } catch (error) {
                     console.log("Error occured in making request to server", error);
                     setLoader(false);
@@ -97,6 +98,7 @@ export default function GuestUpload(props) {
                                     className="btn btn-warning" >Go Back
                                 </Link>
                             </div>
+                          
                             {res && !loader && <div className="col">
                                 <button className="btn btn-success mb-2 ms-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Result</button>
                                 <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

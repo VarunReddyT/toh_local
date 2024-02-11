@@ -15,7 +15,13 @@ export default function GuestDetails(props) {
     const [date, setDate] = useState('');
     const [res, setRes] = useState(false);
     const [loader, setLoader] = useState(false);
+    // const [display, setDisplay] = useState(null);
+    // const [vehicleNumber, setVehicleNumber] = useState(null);
 
+    // function validateVehicleNumber(vehicleNumber) {
+    //     const vehicleRegex = /^([A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4})$/;
+    //     return vehicleRegex.test(vehicleNumber);
+    // }
     const handleVnoChange = (event) => {
         setVNo(event.target.value);
         setPhoneNo('');
@@ -47,6 +53,12 @@ export default function GuestDetails(props) {
         setNoData(false);
         setRes(false);
         e.preventDefault();
+        // const validateVNO = validateVehicleNumber(vehicleNumber);
+        // if (!validateVNO ) {
+        //     setVehicleNumber(null);
+        //     setDisplay("Invalid Vehicle Number");
+        //     setLoader(false);
+        // }
         const response = await axios.get(`http://${window.location.hostname}:4000/guestDet`, {
             params: {
                 vehicleNumber: vno,
@@ -58,12 +70,12 @@ export default function GuestDetails(props) {
             setLoader(false);
             console.log(response.data)
             setNoData(response.data);
+            // setDisplay(null);
         }
         else {
-
             console.log(response.data)
-
-
+            // setDisplay(null);
+            // setNoData(false);
             setPhoneNo(response.data.userMobileNumber);
             setTollPlaza(response.data.tollPlaza);
             setDate(response.data.date);
@@ -99,6 +111,7 @@ export default function GuestDetails(props) {
                             <div>
                                 <Link to="/guest" className="btn btn-warning back" id="blackbut">Go Back</Link>
                             </div>
+                            
                             {res && <div className="ms-3">
                                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#backdrop" >Result</button>
                                 <div className="modal fade" id="backdrop" tabIndex="-1" aria-labelledby="backdropLabel" aria-hidden="true">
@@ -137,10 +150,12 @@ export default function GuestDetails(props) {
                             <div className="ms-3">
                                 <button type="submit" className="btn btn-primary detSub">Submit</button>
                             </div>
-                            {NoData && <div className="container d-flex justify-content-center align-items-center h-50">
+                            
+                        </div>
+                        {/* {display && <p className='mt-3 col-6 d-flex justify-content-center align-items-center alert alert-danger'>{display}</p>} */}
+                        {NoData && <div className="container d-flex justify-content-center align-items-center h-50">
                                 <p class="alert alert-danger">NotFound</p>
                             </div>}
-                        </div>
                         {loader && <Loader />}
 
                     </form>
