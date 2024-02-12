@@ -1,39 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default function Footer() {
   // props.setSignInButton(true);
   return (
     <footer className='footer'>
-      <div className=' bg-light mb-0 '>
+      <div className=' bg-light mb-0'>
             {/* <div className="row fs-4 fw-bolder ms-2 pb-0 mb-0 border-bottom ">
               Tires On Highways
             </div> */}
-        <div className="row border-bottom">
+        <div className="row border-bottom ">
           <div className="col-sm-4 d-flex justify-content-center">
             <div className="row">
-              <div className="col-12 text-center fs-4 fw-bold">
-                Website
-              </div>
 
-              <div className="col text-center">
-                <ul style={{ listStyle: "none" }} className='d-flex flex-sm-column justify-content-center mb-0 ps-0'>
-
-                  <li className='ps-2'>
-                    <Link to='/'>Home</Link>
-                  </li>
-                  <li className='ps-2'>
-                    <Link to='/aboutus'>About</Link>
-                  </li>
-                  
-                </ul>
+              <div className="col-12 mt-1 text-center d-flex justify-content-center align-items-center">
+              "Stay safe on the road with TiresOnHighways, 
+              <br/>
+              Your partner in tire health awareness. 
+              <br/>
+              Together, let's drive towards safer journeys." 
               </div>
-              {/* <div className="col-12 text-center fs-6 mt-3">
-                -A project by Team G81
-                <br />
-                A Thoughtful website to alert users about the condition of the tires.
-                
-              </div> */}
 
             </div>
           </div>
