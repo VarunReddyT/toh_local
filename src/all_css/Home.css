@@ -10,9 +10,9 @@ body {
 
   /* background: fixed; */
   /* display: flex; */
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-repeat: no-repeat;
-  /* background-size: cover; */
+  background-size: cover;
   font-family: 'Poppins';
   overflow-x: hidden;
   
