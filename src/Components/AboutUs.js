@@ -6,7 +6,7 @@ export default function AboutUs(props) {
 
   return (
     <div className="AboutUs mt-5 container">
-      <h1  className="display-4 bg-black border border-white border-3 p-2 rounded-4 text-center "style={{color:'white'}}>Hellooo , Meet The Team G81 !!!</h1>
+      <h1  className="display-4 bg-black border border-white border-3 p-2 rounded-4 text-center "style={{color:'white'}}>Meet The Team G81 !!!</h1>
       <div className="row row-cols-1 row-cols-md-3">
         <div className="col mb-4">
           <div className="card bg-black  text-center"style={{color:'white'}}>
@@ -86,7 +86,7 @@ export default function AboutUs(props) {
               <label classname="form-label">Name</label>
               <input type="text" className="form-control"/>
             </div>
-            <div className="mb-3">
+            <div className="mb-3 mt-2">
               <label className="form-label">Email address</label>
               <input type="email" className="form-control" placeholder="abc@gmail.com" />
             </div>
