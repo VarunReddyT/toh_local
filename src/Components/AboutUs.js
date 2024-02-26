@@ -81,6 +81,23 @@ export default function AboutUs(props) {
                 </span>
               </Link>
             </div>
+            <form>
+            <div>
+              <label classname="form-label">Name</label>
+              <input type="text" className="form-control"/>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email address</label>
+              <input type="email" className="form-control" placeholder="abc@gmail.com" />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">State your issue/feedback</label>
+              <textarea className="form-control" rows="5"></textarea>
+            </div>
+            <div className="mb-3">
+              <button type="submit" className="btn btn-primary">Submit</button>
+            </div>
+          </form>
           </div>
         </div>
       </div>
