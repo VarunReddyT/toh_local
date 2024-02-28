@@ -1,8 +1,36 @@
+import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function AboutUs(props) {
   props.setSignInButton(true);
+
+  async function feedbackForm(e){
+    e.preventDefault();
+    const newName = e.target[0].value;
+    const newEmail = e.target[1].value;
+    const newFeedback = e.target[2].value;
+
+    if(newName === '' || newEmail === '' || newFeedback === ''){
+      alert('Please fill all the fields');
+      return;
+    }
+    console.log(newName, newEmail, newFeedback);
+
+    const sendData = {
+      name: newName,
+      email: newEmail,
+      feedback: newFeedback
+  };
+
+    try{
+        await axios.post('http://localhost:4000/feedback', sendData);
+    }
+    catch(e){
+        console.log(e);
+    }
+  }
+
 
   return (
     <div className="AboutUs mt-5 container">
@@ -81,7 +109,7 @@ export default function AboutUs(props) {
                 </span>
               </Link>
             </div>
-            <form>
+            <form onSubmit={feedbackForm}>
             <div>
               <label classname="form-label">Name</label>
               <input type="text" className="form-control"/>
