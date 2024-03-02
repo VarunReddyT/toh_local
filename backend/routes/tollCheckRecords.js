@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const TollData = require('../models/TollDataSch');
-const auth = require('../middleware/tollAuth');
+// const auth = require('../middleware/tollAuth');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 router.use(cors({
@@ -10,7 +10,7 @@ router.use(cors({
 }));
 router.use(cookieParser());
 // ! CheckRecords Route
-router.get('/checkRecords', auth, async (req, res) => {
+router.get('/checkRecords',async (req, res) => {
     try {
         const date = req.query.date;
         const tollPlaza = req.query.tollPlaza;
