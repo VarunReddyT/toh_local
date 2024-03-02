@@ -41,7 +41,7 @@ export default function Navbar({ signInButton }) {
   }
 
   return (
-    <nav className="container navbar navbar-expand-lg border border-2 border-white rounded-5 w-75 mt-3  border-body fixed-top" style={{ background: '#333333' }} data-bs-theme="dark">
+    <nav className="container navbar navbar-expand-lg border border-2 border-white rounded-5 w-75 mt-3  border-body" style={{ background: '#333333' }} data-bs-theme="dark">
       <div className="container-fluid">
         <Link className="btn btn-light btn-outline-dark rounded-5 me-2" to="/">Home</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
