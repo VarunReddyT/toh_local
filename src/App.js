@@ -16,8 +16,8 @@ import CheckRecords from './Components/TollCheckRecords';
 import NoAccess from './Components/NoAccess';
 import Footer from './Components/Footer';
 // import Feedback from './Components/Feedback';
-import Check from './Components/check';
-import Check2 from './Components/check2';
+// import Check from './Components/check';
+// import Check2 from './Components/check2';
 import './all_css/Home.css';
 import './all_css/Loader.css';
 import './all_css/Footer.css';
@@ -79,8 +79,8 @@ function App() {
             <Route path='/guest/checkdetails' element={<GuestDetails setSignInButton={setSignInButton} />} />
             {/* <Route path = '/feedback' element = {<Feedback/>}/> */}
             <Route path='*' element={<NotFound setSignInButton={setSignInButton} />} />
-            <Route path='/check' element={<Check/>} />
-            <Route path='/check2' element={<Check2/>} />
+            {/* <Route path='/check' element={<Check/>} /> */}
+            {/* <Route path='/toll/check2' element={<Check2 selectedToll={selectedToll} setSignInButton={setSignInButton}/>} /> */}
           </Routes>
         </Router>
       </div>

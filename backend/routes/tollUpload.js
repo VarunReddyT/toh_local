@@ -64,7 +64,7 @@ router.post('/tollupload',auth,Tollupload.any(), async (req, res) => {
             });
 
             for(let i=0;i<tollFlaskResponse.length;i++){
-                msg = msg + `Tire${i+1} is ${tollFlaskResponse[i].class}\n`;
+                msg = msg + `Tire ${i+1} is ${tollFlaskResponse[i].class}\n`;
             }
             console.log(msg);
            

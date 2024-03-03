@@ -1,7 +1,52 @@
+// import React, { useState } from 'react';
+// import {DemoItem } from '@mui/x-date-pickers/internals/demo';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+// export default function Check2() {
+//   const [value, setValue] = useState(null);
+
+//   function getDate(){
+//     // console.log(value['$d'])
+//     const s = value['$d'];
+//     const year = s.getFullYear();
+//     var month = (s.getMonth() + 1).toString();
+//     var day = s.getDate().toString();
+//     if(month.length === 1){
+//       month = '0' + month;
+//     }
+//     if(day.length === 1){
+//       day = "0" + day;
+//     }
+//     const date = year + "-" + month + "-" + day;
+//     console.log(date);
+//   }
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+//         <DemoItem label="Responsive variant">
+//           <DatePicker 
+//           value={value}
+//           onChange={(newValue) => setValue(newValue)}
+//           // onClose={() => console.log(value['$d'])}
+//           onAccept={getDate}
+//           // maxDate={new Date()}
+//           />
+//         </DemoItem>
+
+//     </LocalizationProvider>
+//   );
+// }
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loader from './Loader';
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function CheckRecords(props) {
   props.setSignInButton(false);
@@ -13,15 +58,8 @@ export default function CheckRecords(props) {
   const [loader, setLoader] = useState(false);
   const [resp, setResp] = useState([]);
   const navigate = useNavigate();
-  const [thead , setThead] = useState(false)
-  const date = new Date();
-  let m = date.getMonth() + 1;
-  let d = date.getDate();
-
-  if (m < 10) m = '0' + m;
-  if (d < 10) d = '0' + d;
-
-  const dateS = date.getFullYear() + '-' + m + '-' + String(d);
+  const [thead, setThead] = useState(false)
+  const [value, setValue] = useState(null);
 
   async function checkDate(e) {
     setThead(false)
@@ -38,16 +76,28 @@ export default function CheckRecords(props) {
       });
       setResp(response.data);
       setLoader(false);
-      response.data.length===0?setThead(false):setThead(true);
+      response.data.length === 0 ? setThead(false) : setThead(true);
       setRecords(`${response.data.length}`);
     } catch (err) {
       console.log(err);
     }
   }
-
   const handleDateChange = (e) => {
+    const s = e['$d'];
+    setValue(e);
+    const year = s.getFullYear();
+    var month = (s.getMonth() + 1).toString();
+    var day = s.getDate().toString();
+    if (month.length === 1) {
+      month = '0' + month;
+    }
+    if (day.length === 1) {
+      day = "0" + day;
+    }
+    const date = year + "-" + month + "-" + day;
+    console.log(date);
     setLoader(false);
-    setDateSub(e.target.value);
+    setDateSub(date);
   }
 
   const handleImageClick = () => {
@@ -84,20 +134,32 @@ export default function CheckRecords(props) {
 
   return (
     <div className='parenth'>
-      <div className='container text-center'>
-      <h1 className='mt-5 border border-black border-3 rounded-5 p-4' style={{backdropFilter:'blur(2px)'}} >Toll Check Records : {props.selectedToll}</h1>
-        <form onSubmit={checkDate} style={{backdropFilter:'blur(2px)'}} className='container mb-4 rounded-3 p-2   justify-content-center' >
-          <label htmlFor='date'className="mt-1 mb-2 container  align-items-center fw-bold fs-3">Enter date :</label>
-          <input type='date' name='date' className='me-3 ms-3 rounded-3 border border-3 border-white' onChange={handleDateChange} max={dateS} required></input>
-          {!loader && <input type='submit' className='btn btn-primary me-1' value='Check' />}
-          <input type='button' className='btn btn-warning ms-2' onClick={goTo} value='Go Back' />
+      <div className='container text-center '>
+        <h1 className='mt-5 border border-black border-3 rounded-5 p-4' style={{ backdropFilter: 'blur(2px)' }} >Toll Check Records : {props.selectedToll}</h1>
+        <form onSubmit={checkDate} style={{ backdropFilter: 'blur(2px)' }} className='container mb-4 rounded-3 p-2  justify-content-center' >
+          <div className='row justify-content-center align-items-center'>
+            <div className='col-md-6'>
+              <div style={{ backgroundColor: 'lightblue', padding: '10px' }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoItem label="Select Date">
+                    <DatePicker
+                      value={value}
+                      onAccept={handleDateChange}
+                    />
+                  </DemoItem>
+                </LocalizationProvider>
+              </div>
+            </div>
+          </div>
+          {!loader && <input type='submit' className='btn btn-primary me-1 mt-3' value='Check' />}
+          <input type='button' className='btn btn-warning ms-2 mt-3' onClick={goTo} value='Go Back' />
           {loader && <Loader />}
-        {records && !loader &&
-        <div id='p' className='mt-3 mb-3'>
+          {records && !loader &&
+            <div id='p' className='mt-3 mb-3'>
 
-          {records==='0'? <p className='alert alert-danger'>No Records</p>:<p className='alert alert-warning'>Total Records : {records}</p>}
-        </div>
-        }
+              {records === '0' ? <p className='alert alert-danger'>No Records</p> : <p className='alert alert-warning'>Total Records : {records}</p>}
+            </div>
+          }
         </form>
       </div>
 
@@ -137,8 +199,8 @@ export default function CheckRecords(props) {
                                   </div>
                                   <p >Classification : {item.class} </p>
                                   <p >Confidence : {item.confidence} </p>
-                                  <hr/>
-                                  <br/>
+                                  <hr />
+                                  <br />
                                 </div>))}
                               {
                                 !showModal &&
