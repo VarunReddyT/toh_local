@@ -17,7 +17,7 @@ router.get('/checkRecords',async (req, res) => {
         console.log(date);
         try {
             const tollData = await TollData.find({ date: date, tollPlaza: tollPlaza });
-            console.log(tollData);
+            // console.log(tollData);
             const list1 = [];
             tollData.forEach((data) => {
                 list1.push(
