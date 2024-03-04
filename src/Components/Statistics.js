@@ -21,8 +21,8 @@ export default function Statistics(props) {
   }, []);
   const data = [
     ["Condition", "Number of cases"],
-    ["Cracked", stats[0]],
     ["Normal", stats[1]],
+    ["Cracked", stats[0]],
   ];
 
   const options = {
