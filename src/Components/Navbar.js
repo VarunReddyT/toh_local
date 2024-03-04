@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { colors } from '@mui/material';
 
 
 // import axios from 'axios'
@@ -36,23 +37,23 @@ export default function Navbar({ signInButton }) {
   }
 
   return (
-    <nav className="container navbar navbar-expand-lg border border-2 border-white rounded-5 w-75 mt-3  border-body fixed-top" style={{ background: '#333333' }} data-bs-theme="dark">
+    <nav className="container navbar navbar-expand-lg border border-2 border-black rounded-5 w-75 border-body mt-3" style={{ background: 'blur' }} data-bs-theme="dark">
       <div className="container-fluid">
-        <Link className="btn btn-light btn-outline-dark rounded-5 me-2" to="/">Home</Link>
+        <Link className="btn btn-light btn-dark rounded-5 me-2" to="/">Home</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/aboutus">AboutUs</Link>
+            <li className="nav-item" >
+              <Link className="nav-link" style={{color:'black'}} to="/aboutus">AboutUs</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/stats">Statistics</Link>
+              <Link className="nav-link" style={{color:'black'}} to="/stats">Statistics</Link>
             </li>
           </ul>
           {signInButton && (
-            <Link className='nav-item btn btn-light rounded-5' type='button' to="/toll">Toll Sign In</Link>
+            <Link className='nav-item btn btn-dark rounded-5' type='button' to="/toll">Toll Sign In</Link>
           )}
 
           {!signInButton && (

@@ -104,7 +104,7 @@ export default function AboutUs(props) {
             <h1>Contact Us On:</h1>
             
             <div className="d-flex">
-              <Link to='https://mail.google.com/mail/u/0/#inbox?compose=new' target="_blank" rel="noopener noreferrer">
+              <Link to='mailto:shivasaicharand@gmail.com' target="_blank" rel="noopener noreferrer">
                 <span className="material-symbols-outlined" style={{ color: "red" }}>
                   mail 
                 </span>
