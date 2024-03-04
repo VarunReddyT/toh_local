@@ -24,8 +24,10 @@ export default function AboutUs(props) {
   };
 
     try{
-        axios.post('http://localhost:4000/feedback', sendData);
-        document.getElementById('feedbackF').reset(); 
+        const response = await axios.post('http://localhost:4000/feedback', sendData);
+        if(response){
+          document.getElementById('feedbackF').reset(); 
+        }
     }
     catch(e){
         console.log(e);

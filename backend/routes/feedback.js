@@ -24,6 +24,7 @@ router.post('/feedback', async (req, res) => {
     try{
         await saveData.save();
         console.log("Feedback saved successfully");
+        res.send("Feedback saved successfully");
     }
     catch(e){
         console.log("Error saving feedback: ", e);
