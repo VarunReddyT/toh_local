@@ -83,8 +83,8 @@ router.post('/tollupload',auth,Tollupload.any(), async (req, res) => {
     }
     // sms(vehicleNumber,tollPlaza,date,msg);
     
-    const accountSid = 'AC412a31f53490ad0d0c433c7f8d2edacf';
-    const authToken = '17444693aead55c280e00d5ea829843f';
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
         const client = twilio(accountSid, authToken);
         try {
         const responseSMS = await client.messages
