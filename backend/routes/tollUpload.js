@@ -93,14 +93,14 @@ router.post('/tollupload',auth,Tollupload.any(), async (req, res) => {
                 to: '+91' + userMobileNumber,
                 body: `Your vehicle  ${vehicleNumber} has crossed ${tollPlaza} on ${date}\n${msg}`,
             })
-        const responseWhatsapp = await client.messages
-            .create({
-                from: 'whatsapp:+14155238886',
-                to: 'whatsapp:+91'+userMobileNumber,
-                body: `Your vehicle  ${vehicleNumber} has crossed ${tollPlaza} on ${date}\n${msg}`,
-            })
+        // const responseWhatsapp = await client.messages
+        //     .create({
+        //         from: 'whatsapp:+14155238886',
+        //         to: 'whatsapp:+91'+userMobileNumber,
+        //         body: `Your vehicle  ${vehicleNumber} has crossed ${tollPlaza} on ${date}\n${msg}`,
+        //     })
         console.log(responseSMS.sid);
-        console.log(responseWhatsapp.sid);
+        // console.log(responseWhatsapp.sid);
             
     } catch (err) {
         console.log('SMS NOT SENT');
