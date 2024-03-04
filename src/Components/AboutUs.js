@@ -24,7 +24,8 @@ export default function AboutUs(props) {
   };
 
     try{
-        await axios.post('http://localhost:4000/feedback', sendData);
+        axios.post('http://localhost:4000/feedback', sendData);
+        document.getElementById('feedbackF').reset(); 
     }
     catch(e){
         console.log(e);
@@ -109,7 +110,7 @@ export default function AboutUs(props) {
                 </span>
               </Link>
             </div>
-            <form onSubmit={feedbackForm}>
+            <form id="feedbackF" onSubmit={feedbackForm}>
             <div>
               <label classname="form-label">Name</label>
               <input type="text" className="form-control"/>
