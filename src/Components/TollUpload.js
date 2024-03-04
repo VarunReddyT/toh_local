@@ -74,20 +74,20 @@ export default function TollUpload(props) {
     setDisplay(false);
     const validateVNO = validateVehicleNumber(vehicleNumber);
     const validateMNO = validatePhoneNumber(userMobileNumber);
-    if (!validateVNO && !validateMNO ) {
+    if (!validateVNO && !validateMNO) {
       setVehicleNumber(null);
       setUserMobileNo(null);
       setDisplay("Invalid Vehicle Number and Mobile Number");
       setLoader(false);
       return;
     }
-    else if (!validateVNO  ) {
+    else if (!validateVNO) {
       setVehicleNumber(null);
       setDisplay("Invalid Vehicle Number");
       setLoader(false);
       return;
     }
-    else if (!validateMNO ) {
+    else if (!validateMNO) {
       setUserMobileNo(null);
       setDisplay("Invalid Mobile Number");
       setLoader(false);
