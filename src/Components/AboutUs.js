@@ -95,10 +95,10 @@ export default function AboutUs(props) {
       <div className="row">
         <div className="col-md-6">
           <div className="map-example">
-            <iframe className='border border-black border-3 rounded-4 mb-5' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60916.877541305425!2d78.490234!3d17.397152!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99c44533324f%3A0x8aa5456a7d836bb5!2sKeshav%20Memorial%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1704704926760!5m2!1sen!2sin" title="CLocation" style={{ width: "100%", height: "450px", border: "10", marginTop: "20px" }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            <iframe className='border border-black border-3 rounded-4' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60916.877541305425!2d78.490234!3d17.397152!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99c44533324f%3A0x8aa5456a7d836bb5!2sKeshav%20Memorial%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1704704926760!5m2!1sen!2sin" title="CLocation" style={{ width: "100%", height: "450px", border: "10", marginTop: "20px" }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
-        <div className="container col-md-6 d-flex align-items-center">
+        <div className="container col-md-6 d-flex align-items-center mb-5">
           <div className="container ms-5 bg-black rounded-4 p-2 border border-white border-3 "style={{color:'white'}}>
             <h1>Contact Us On:</h1>
             
@@ -120,7 +120,7 @@ export default function AboutUs(props) {
             </div>
             <div className="mb-3">
               <label className="form-label">State your issue/feedback</label>
-              <textarea className="form-control" rows="5"></textarea>
+              <textarea className="form-control" rows="4"></textarea>
             </div>
             <div className="mb-3">
               <button type="submit" className="btn btn-primary">Submit</button>

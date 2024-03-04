@@ -83,8 +83,8 @@ router.post('/tollupload',auth,Tollupload.any(), async (req, res) => {
     }
     // sms(vehicleNumber,tollPlaza,date,msg);
     
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    // const accountSid = 'AC412a31f53490ad0d0c433c7f8d2edacf';
+    // const authToken = 'ef7a0f4a5b47ed26360b5806c196fb38';
         const client = twilio(accountSid, authToken);
         try {
         const responseSMS = await client.messages
@@ -93,7 +93,14 @@ router.post('/tollupload',auth,Tollupload.any(), async (req, res) => {
                 to: '+91' + userMobileNumber,
                 body: `Your vehicle  ${vehicleNumber} has crossed ${tollPlaza} on ${date}\n${msg}`,
             })
+        const responseWhatsapp = await client.messages
+            .create({
+                from: 'whatsapp:+14155238886',
+                to: 'whatsapp:+91'+userMobileNumber,
+                body: `Your vehicle  ${vehicleNumber} has crossed ${tollPlaza} on ${date}\n${msg}`,
+            })
         console.log(responseSMS.sid);
+        console.log(responseWhatsapp.sid);
             
     } catch (err) {
         console.log('SMS NOT SENT');

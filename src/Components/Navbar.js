@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
 
 // import axios from 'axios'
@@ -9,13 +10,6 @@ export default function Navbar({ signInButton }) {
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
   const modalRef = useRef(null);
-  // const handleLogOut = async (e) => {
-  //   e.preventDefault()
-  //   const response = await axios.get(`http://${window.location.hostname}:4000/logout`, { withCredentials: true })
-  //   if (response.data) {
-  //     navigate('/toll/logoutwarning');
-  //   }
-  // }
   useEffect(() => {
     function handleClickOutside(event) {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -32,8 +26,9 @@ export default function Navbar({ signInButton }) {
   function handleOpenModal() {
     setModal(true);
   }
-  function handleCloseModal() {
+  async function handleCloseModal() {
     setModal(false);
+    const response = await axios.get(`http://${window.location.hostname}:4000/logout`, { withCredentials: true })
     navigate('/');
   }
   function modalClose() {
