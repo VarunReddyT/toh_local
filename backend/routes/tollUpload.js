@@ -8,7 +8,6 @@ const axios = require('axios');
 const blobUtil = require('blob-util');
 const cookieparser = require('cookie-parser')
 router.use(cookieparser());
-const twilio = require('twilio');
 require('dotenv').config();
 // ^ CORS 
 router.use(cors({
@@ -83,9 +82,9 @@ router.post('/tollupload',auth,Tollupload.any(), async (req, res) => {
     }
     // sms(vehicleNumber,tollPlaza,date,msg);
     
-    // const accountSid = 'AC412a31f53490ad0d0c433c7f8d2edacf';
-    // const authToken = 'ef7a0f4a5b47ed26360b5806c196fb38';
-        const client = twilio(accountSid, authToken);
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+        const client = require('twilio')(accountSid, authToken);
         try {
         const responseSMS = await client.messages
             .create({
